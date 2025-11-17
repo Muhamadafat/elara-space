@@ -1,0 +1,33 @@
+# Elara Space - Clean .htaccess (No php_flag)
+
+# Prevent Directory Listing
+Options -Indexes
+
+# Set default charset
+AddDefaultCharset UTF-8
+
+# Rewrite Engine (jika dibutuhkan nanti)
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /elara-space/
+</IfModule>
+
+# Security - Protect sensitive files
+<FilesMatch "\.(sql|bak|log|env)$">
+    Require all denied
+</FilesMatch>
+
+# Compress files
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript
+</IfModule>
+
+# Browser Caching
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType image/jpg "access plus 1 year"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+</IfModule>
