@@ -1,0 +1,990 @@
+[25-Nov-2025 01:49:38 Asia/Jakarta] Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'f.paid_at' in 'order clause'
+[25-Nov-2025 01:49:38 Asia/Jakarta] Query: 
+    SELECT f.*, b.title, b.author, bo.borrow_date, bo.return_date
+    FROM fines f
+    JOIN borrowings bo ON f.borrowing_id = bo.id
+    JOIN books b ON bo.book_id = b.id
+    WHERE f.user_id = ? AND f.status = 'paid'
+    ORDER BY f.paid_at DESC
+    LIMIT 5
+
+[25-Nov-2025 01:49:40 Asia/Jakarta] Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'f.paid_at' in 'order clause'
+[25-Nov-2025 01:49:40 Asia/Jakarta] Query: 
+        SELECT f.*, b.title, b.author, bo.borrow_date, bo.return_date
+        FROM fines f
+        JOIN borrowings bo ON f.borrowing_id = bo.id
+        JOIN books b ON bo.book_id = b.id
+        WHERE f.user_id = ? AND f.status = 'paid'
+        ORDER BY f.paid_at DESC
+        LIMIT 5
+    
+[25-Nov-2025 01:49:43 Asia/Jakarta] Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'f.paid_at' in 'order clause'
+[25-Nov-2025 01:49:43 Asia/Jakarta] Query: 
+        SELECT f.*, b.title, b.author, bo.borrow_date, bo.return_date
+        FROM fines f
+        JOIN borrowings bo ON f.borrowing_id = bo.id
+        JOIN books b ON bo.book_id = b.id
+        WHERE f.user_id = ? AND f.status = 'paid'
+        ORDER BY f.paid_at DESC
+        LIMIT 5
+    
+[25-Nov-2025 01:49:43 Asia/Jakarta] Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'f.paid_at' in 'order clause'
+[25-Nov-2025 01:49:43 Asia/Jakarta] Query: 
+        SELECT f.*, b.title, b.author, bo.borrow_date, bo.return_date
+        FROM fines f
+        JOIN borrowings bo ON f.borrowing_id = bo.id
+        JOIN books b ON bo.book_id = b.id
+        WHERE f.user_id = ? AND f.status = 'paid'
+        ORDER BY f.paid_at DESC
+        LIMIT 5
+    
+[25-Nov-2025 01:49:43 Asia/Jakarta] Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'f.paid_at' in 'order clause'
+[25-Nov-2025 01:49:43 Asia/Jakarta] Query: 
+        SELECT f.*, b.title, b.author, bo.borrow_date, bo.return_date
+        FROM fines f
+        JOIN borrowings bo ON f.borrowing_id = bo.id
+        JOIN books b ON bo.book_id = b.id
+        WHERE f.user_id = ? AND f.status = 'paid'
+        ORDER BY f.paid_at DESC
+        LIMIT 5
+    
+[25-Nov-2025 01:49:44 Asia/Jakarta] Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'f.paid_at' in 'order clause'
+[25-Nov-2025 01:49:44 Asia/Jakarta] Query: 
+        SELECT f.*, b.title, b.author, bo.borrow_date, bo.return_date
+        FROM fines f
+        JOIN borrowings bo ON f.borrowing_id = bo.id
+        JOIN books b ON bo.book_id = b.id
+        WHERE f.user_id = ? AND f.status = 'paid'
+        ORDER BY f.paid_at DESC
+        LIMIT 5
+    
+[25-Nov-2025 01:49:44 Asia/Jakarta] Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'f.paid_at' in 'order clause'
+[25-Nov-2025 01:49:44 Asia/Jakarta] Query: 
+        SELECT f.*, b.title, b.author, bo.borrow_date, bo.return_date
+        FROM fines f
+        JOIN borrowings bo ON f.borrowing_id = bo.id
+        JOIN books b ON bo.book_id = b.id
+        WHERE f.user_id = ? AND f.status = 'paid'
+        ORDER BY f.paid_at DESC
+        LIMIT 5
+    
+[25-Nov-2025 01:49:44 Asia/Jakarta] Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'f.paid_at' in 'order clause'
+[25-Nov-2025 01:49:44 Asia/Jakarta] Query: 
+        SELECT f.*, b.title, b.author, bo.borrow_date, bo.return_date
+        FROM fines f
+        JOIN borrowings bo ON f.borrowing_id = bo.id
+        JOIN books b ON bo.book_id = b.id
+        WHERE f.user_id = ? AND f.status = 'paid'
+        ORDER BY f.paid_at DESC
+        LIMIT 5
+    
+[25-Nov-2025 01:49:44 Asia/Jakarta] Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'f.paid_at' in 'order clause'
+[25-Nov-2025 01:49:44 Asia/Jakarta] Query: 
+        SELECT f.*, b.title, b.author, bo.borrow_date, bo.return_date
+        FROM fines f
+        JOIN borrowings bo ON f.borrowing_id = bo.id
+        JOIN books b ON bo.book_id = b.id
+        WHERE f.user_id = ? AND f.status = 'paid'
+        ORDER BY f.paid_at DESC
+        LIMIT 5
+    
+[25-Nov-2025 01:49:45 Asia/Jakarta] Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'f.paid_at' in 'order clause'
+[25-Nov-2025 01:49:45 Asia/Jakarta] Query: 
+        SELECT f.*, b.title, b.author, bo.borrow_date, bo.return_date
+        FROM fines f
+        JOIN borrowings bo ON f.borrowing_id = bo.id
+        JOIN books b ON bo.book_id = b.id
+        WHERE f.user_id = ? AND f.status = 'paid'
+        ORDER BY f.paid_at DESC
+        LIMIT 5
+    
+[25-Nov-2025 01:52:36 Asia/Jakarta] Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'f.paid_at' in 'order clause'
+[25-Nov-2025 01:52:36 Asia/Jakarta] Query: 
+        SELECT f.*, b.title, b.author, bo.borrow_date, bo.return_date
+        FROM fines f
+        JOIN borrowings bo ON f.borrowing_id = bo.id
+        JOIN books b ON bo.book_id = b.id
+        WHERE f.user_id = ? AND f.status = 'paid'
+        ORDER BY f.paid_at DESC
+        LIMIT 5
+    
+[25-Nov-2025 01:52:36 Asia/Jakarta] PHP Fatal error:  Uncaught TypeError: Cannot access offset of type string on string in C:\laragon\www\elara-space\user\requests.php:393
+Stack trace:
+#0 {main}
+  thrown in C:\laragon\www\elara-space\user\requests.php on line 393
+[25-Nov-2025 01:52:38 Asia/Jakarta] Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'f.paid_at' in 'order clause'
+[25-Nov-2025 01:52:38 Asia/Jakarta] Query: 
+        SELECT f.*, b.title, b.author, bo.borrow_date, bo.return_date
+        FROM fines f
+        JOIN borrowings bo ON f.borrowing_id = bo.id
+        JOIN books b ON bo.book_id = b.id
+        WHERE f.user_id = ? AND f.status = 'paid'
+        ORDER BY f.paid_at DESC
+        LIMIT 5
+    
+[25-Nov-2025 01:52:38 Asia/Jakarta] PHP Fatal error:  Uncaught TypeError: Cannot access offset of type string on string in C:\laragon\www\elara-space\user\requests.php:393
+Stack trace:
+#0 {main}
+  thrown in C:\laragon\www\elara-space\user\requests.php on line 393
+[25-Nov-2025 01:52:38 Asia/Jakarta] Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'f.paid_at' in 'order clause'
+[25-Nov-2025 01:52:38 Asia/Jakarta] Query: 
+        SELECT f.*, b.title, b.author, bo.borrow_date, bo.return_date
+        FROM fines f
+        JOIN borrowings bo ON f.borrowing_id = bo.id
+        JOIN books b ON bo.book_id = b.id
+        WHERE f.user_id = ? AND f.status = 'paid'
+        ORDER BY f.paid_at DESC
+        LIMIT 5
+    
+[25-Nov-2025 01:52:38 Asia/Jakarta] PHP Fatal error:  Uncaught TypeError: Cannot access offset of type string on string in C:\laragon\www\elara-space\user\requests.php:393
+Stack trace:
+#0 {main}
+  thrown in C:\laragon\www\elara-space\user\requests.php on line 393
+[25-Nov-2025 01:52:38 Asia/Jakarta] Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'f.paid_at' in 'order clause'
+[25-Nov-2025 01:52:38 Asia/Jakarta] Query: 
+        SELECT f.*, b.title, b.author, bo.borrow_date, bo.return_date
+        FROM fines f
+        JOIN borrowings bo ON f.borrowing_id = bo.id
+        JOIN books b ON bo.book_id = b.id
+        WHERE f.user_id = ? AND f.status = 'paid'
+        ORDER BY f.paid_at DESC
+        LIMIT 5
+    
+[25-Nov-2025 01:52:38 Asia/Jakarta] PHP Fatal error:  Uncaught TypeError: Cannot access offset of type string on string in C:\laragon\www\elara-space\user\requests.php:393
+Stack trace:
+#0 {main}
+  thrown in C:\laragon\www\elara-space\user\requests.php on line 393
+[25-Nov-2025 01:52:39 Asia/Jakarta] Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'f.paid_at' in 'order clause'
+[25-Nov-2025 01:52:39 Asia/Jakarta] Query: 
+        SELECT f.*, b.title, b.author, bo.borrow_date, bo.return_date
+        FROM fines f
+        JOIN borrowings bo ON f.borrowing_id = bo.id
+        JOIN books b ON bo.book_id = b.id
+        WHERE f.user_id = ? AND f.status = 'paid'
+        ORDER BY f.paid_at DESC
+        LIMIT 5
+    
+[25-Nov-2025 01:52:39 Asia/Jakarta] PHP Fatal error:  Uncaught TypeError: Cannot access offset of type string on string in C:\laragon\www\elara-space\user\requests.php:393
+Stack trace:
+#0 {main}
+  thrown in C:\laragon\www\elara-space\user\requests.php on line 393
+[25-Nov-2025 01:52:39 Asia/Jakarta] Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'f.paid_at' in 'order clause'
+[25-Nov-2025 01:52:39 Asia/Jakarta] Query: 
+        SELECT f.*, b.title, b.author, bo.borrow_date, bo.return_date
+        FROM fines f
+        JOIN borrowings bo ON f.borrowing_id = bo.id
+        JOIN books b ON bo.book_id = b.id
+        WHERE f.user_id = ? AND f.status = 'paid'
+        ORDER BY f.paid_at DESC
+        LIMIT 5
+    
+[25-Nov-2025 01:52:39 Asia/Jakarta] PHP Fatal error:  Uncaught TypeError: Cannot access offset of type string on string in C:\laragon\www\elara-space\user\requests.php:393
+Stack trace:
+#0 {main}
+  thrown in C:\laragon\www\elara-space\user\requests.php on line 393
+[25-Nov-2025 01:52:39 Asia/Jakarta] Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'f.paid_at' in 'order clause'
+[25-Nov-2025 01:52:39 Asia/Jakarta] Query: 
+        SELECT f.*, b.title, b.author, bo.borrow_date, bo.return_date
+        FROM fines f
+        JOIN borrowings bo ON f.borrowing_id = bo.id
+        JOIN books b ON bo.book_id = b.id
+        WHERE f.user_id = ? AND f.status = 'paid'
+        ORDER BY f.paid_at DESC
+        LIMIT 5
+    
+[25-Nov-2025 01:52:39 Asia/Jakarta] PHP Fatal error:  Uncaught TypeError: Cannot access offset of type string on string in C:\laragon\www\elara-space\user\requests.php:393
+Stack trace:
+#0 {main}
+  thrown in C:\laragon\www\elara-space\user\requests.php on line 393
+[25-Nov-2025 01:52:39 Asia/Jakarta] Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'f.paid_at' in 'order clause'
+[25-Nov-2025 01:52:39 Asia/Jakarta] Query: 
+        SELECT f.*, b.title, b.author, bo.borrow_date, bo.return_date
+        FROM fines f
+        JOIN borrowings bo ON f.borrowing_id = bo.id
+        JOIN books b ON bo.book_id = b.id
+        WHERE f.user_id = ? AND f.status = 'paid'
+        ORDER BY f.paid_at DESC
+        LIMIT 5
+    
+[25-Nov-2025 01:52:39 Asia/Jakarta] PHP Fatal error:  Uncaught TypeError: Cannot access offset of type string on string in C:\laragon\www\elara-space\user\requests.php:393
+Stack trace:
+#0 {main}
+  thrown in C:\laragon\www\elara-space\user\requests.php on line 393
+[25-Nov-2025 01:52:47 Asia/Jakarta] Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'f.paid_at' in 'order clause'
+[25-Nov-2025 01:52:47 Asia/Jakarta] Query: 
+        SELECT f.*, b.title, b.author, bo.borrow_date, bo.return_date
+        FROM fines f
+        JOIN borrowings bo ON f.borrowing_id = bo.id
+        JOIN books b ON bo.book_id = b.id
+        WHERE f.user_id = ? AND f.status = 'paid'
+        ORDER BY f.paid_at DESC
+        LIMIT 5
+    
+[25-Nov-2025 01:52:47 Asia/Jakarta] PHP Fatal error:  Uncaught TypeError: Cannot access offset of type string on string in C:\laragon\www\elara-space\user\requests.php:393
+Stack trace:
+#0 {main}
+  thrown in C:\laragon\www\elara-space\user\requests.php on line 393
+[25-Nov-2025 01:53:05 Asia/Jakarta] Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'f.paid_at' in 'order clause'
+[25-Nov-2025 01:53:05 Asia/Jakarta] Query: 
+        SELECT f.*, b.title, b.author, bo.borrow_date, bo.return_date
+        FROM fines f
+        JOIN borrowings bo ON f.borrowing_id = bo.id
+        JOIN books b ON bo.book_id = b.id
+        WHERE f.user_id = ? AND f.status = 'paid'
+        ORDER BY f.paid_at DESC
+        LIMIT 5
+    
+[25-Nov-2025 01:53:05 Asia/Jakarta] PHP Fatal error:  Uncaught TypeError: Cannot access offset of type string on string in C:\laragon\www\elara-space\user\requests.php:393
+Stack trace:
+#0 {main}
+  thrown in C:\laragon\www\elara-space\user\requests.php on line 393
+[25-Nov-2025 01:53:27 Asia/Jakarta] Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'f.paid_at' in 'order clause'
+[25-Nov-2025 01:53:27 Asia/Jakarta] Query: 
+        SELECT f.*, b.title, b.author, bo.borrow_date, bo.return_date
+        FROM fines f
+        JOIN borrowings bo ON f.borrowing_id = bo.id
+        JOIN books b ON bo.book_id = b.id
+        WHERE f.user_id = ? AND f.status = 'paid'
+        ORDER BY f.paid_at DESC
+        LIMIT 5
+    
+[25-Nov-2025 01:53:27 Asia/Jakarta] PHP Fatal error:  Uncaught TypeError: Cannot access offset of type string on string in C:\laragon\www\elara-space\user\requests.php:393
+Stack trace:
+#0 {main}
+  thrown in C:\laragon\www\elara-space\user\requests.php on line 393
+[25-Nov-2025 01:53:29 Asia/Jakarta] PHP Warning:  Undefined array key "icon" in C:\laragon\www\elara-space\user\notifications.php on line 299
+[25-Nov-2025 01:53:29 Asia/Jakarta] PHP Warning:  Undefined array key "icon" in C:\laragon\www\elara-space\user\notifications.php on line 299
+[25-Nov-2025 01:53:29 Asia/Jakarta] PHP Warning:  Undefined array key "icon" in C:\laragon\www\elara-space\user\notifications.php on line 344
+[25-Nov-2025 01:53:29 Asia/Jakarta] PHP Warning:  Undefined array key "icon" in C:\laragon\www\elara-space\user\notifications.php on line 344
+[25-Nov-2025 01:53:41 Asia/Jakarta] Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'f.paid_at' in 'order clause'
+[25-Nov-2025 01:53:41 Asia/Jakarta] Query: 
+        SELECT f.*, b.title, b.author, bo.borrow_date, bo.return_date
+        FROM fines f
+        JOIN borrowings bo ON f.borrowing_id = bo.id
+        JOIN books b ON bo.book_id = b.id
+        WHERE f.user_id = ? AND f.status = 'paid'
+        ORDER BY f.paid_at DESC
+        LIMIT 5
+    
+[25-Nov-2025 01:53:41 Asia/Jakarta] PHP Fatal error:  Uncaught TypeError: Cannot access offset of type string on string in C:\laragon\www\elara-space\user\requests.php:393
+Stack trace:
+#0 {main}
+  thrown in C:\laragon\www\elara-space\user\requests.php on line 393
+[25-Nov-2025 07:09:40 Asia/Jakarta] Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'f.paid_at' in 'order clause'
+[25-Nov-2025 07:09:40 Asia/Jakarta] Query: 
+    SELECT f.*, b.title, b.author, bo.borrow_date, bo.return_date
+    FROM fines f
+    JOIN borrowings bo ON f.borrowing_id = bo.id
+    JOIN books b ON bo.book_id = b.id
+    WHERE f.user_id = ? AND f.status = 'paid'
+    ORDER BY f.paid_at DESC
+    LIMIT 5
+
+[25-Nov-2025 07:16:58 Asia/Jakarta] Database Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'elara_space.book_request_payments' doesn't exist
+[25-Nov-2025 07:16:58 Asia/Jakarta] Query: 
+        SELECT brp.*, br.title, br.author, br.publisher_name, br.category, br.priority
+        FROM book_request_payments brp
+        JOIN book_requests br ON brp.book_request_id = br.id
+        WHERE brp.user_id = ? AND brp.payment_status = 'unpaid'
+        ORDER BY brp.due_date ASC, brp.created_at DESC
+    
+[25-Nov-2025 07:16:58 Asia/Jakarta] Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'f.paid_at' in 'order clause'
+[25-Nov-2025 07:16:58 Asia/Jakarta] Query: 
+        SELECT f.*, b.title, b.author, bo.borrow_date, bo.return_date
+        FROM fines f
+        JOIN borrowings bo ON f.borrowing_id = bo.id
+        JOIN books b ON bo.book_id = b.id
+        WHERE f.user_id = ? AND f.status = 'paid'
+        ORDER BY f.paid_at DESC
+        LIMIT 5
+    
+[25-Nov-2025 07:19:09 Asia/Jakarta] Database Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'elara_space.book_request_payments' doesn't exist
+[25-Nov-2025 07:19:09 Asia/Jakarta] Query: 
+        SELECT brp.*, br.title, br.author, br.publisher_name, br.category, br.priority
+        FROM book_request_payments brp
+        JOIN book_requests br ON brp.book_request_id = br.id
+        WHERE brp.user_id = ? AND brp.payment_status = 'unpaid'
+        ORDER BY brp.due_date ASC, brp.created_at DESC
+    
+[25-Nov-2025 07:19:09 Asia/Jakarta] Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'f.paid_at' in 'order clause'
+[25-Nov-2025 07:19:09 Asia/Jakarta] Query: 
+        SELECT f.*, b.title, b.author, bo.borrow_date, bo.return_date
+        FROM fines f
+        JOIN borrowings bo ON f.borrowing_id = bo.id
+        JOIN books b ON bo.book_id = b.id
+        WHERE f.user_id = ? AND f.status = 'paid'
+        ORDER BY f.paid_at DESC
+        LIMIT 5
+    
+[25-Nov-2025 07:19:32 Asia/Jakarta] Database Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'elara_space.book_request_payments' doesn't exist
+[25-Nov-2025 07:19:32 Asia/Jakarta] Query: 
+        SELECT brp.*, br.title, br.author, br.publisher_name, br.category, br.priority
+        FROM book_request_payments brp
+        JOIN book_requests br ON brp.book_request_id = br.id
+        WHERE brp.user_id = ? AND brp.payment_status = 'unpaid'
+        ORDER BY brp.due_date ASC, brp.created_at DESC
+    
+[25-Nov-2025 07:19:32 Asia/Jakarta] Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'f.paid_at' in 'order clause'
+[25-Nov-2025 07:19:32 Asia/Jakarta] Query: 
+        SELECT f.*, b.title, b.author, bo.borrow_date, bo.return_date
+        FROM fines f
+        JOIN borrowings bo ON f.borrowing_id = bo.id
+        JOIN books b ON bo.book_id = b.id
+        WHERE f.user_id = ? AND f.status = 'paid'
+        ORDER BY f.paid_at DESC
+        LIMIT 5
+    
+[25-Nov-2025 07:19:36 Asia/Jakarta] Database Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'elara_space.book_request_payments' doesn't exist
+[25-Nov-2025 07:19:36 Asia/Jakarta] Query: 
+        SELECT brp.*, br.title, br.author, br.publisher_name, br.category, br.priority
+        FROM book_request_payments brp
+        JOIN book_requests br ON brp.book_request_id = br.id
+        WHERE brp.user_id = ? AND brp.payment_status = 'unpaid'
+        ORDER BY brp.due_date ASC, brp.created_at DESC
+    
+[25-Nov-2025 07:19:36 Asia/Jakarta] Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'f.paid_at' in 'order clause'
+[25-Nov-2025 07:19:36 Asia/Jakarta] Query: 
+        SELECT f.*, b.title, b.author, bo.borrow_date, bo.return_date
+        FROM fines f
+        JOIN borrowings bo ON f.borrowing_id = bo.id
+        JOIN books b ON bo.book_id = b.id
+        WHERE f.user_id = ? AND f.status = 'paid'
+        ORDER BY f.paid_at DESC
+        LIMIT 5
+    
+[25-Nov-2025 07:19:58 Asia/Jakarta] Database Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'elara_space.book_request_payments' doesn't exist
+[25-Nov-2025 07:19:58 Asia/Jakarta] Query: 
+        SELECT brp.*, br.title, br.author, br.publisher_name, br.category, br.priority
+        FROM book_request_payments brp
+        JOIN book_requests br ON brp.book_request_id = br.id
+        WHERE brp.user_id = ? AND brp.payment_status = 'unpaid'
+        ORDER BY brp.due_date ASC, brp.created_at DESC
+    
+[25-Nov-2025 07:19:58 Asia/Jakarta] Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'f.paid_at' in 'order clause'
+[25-Nov-2025 07:19:58 Asia/Jakarta] Query: 
+        SELECT f.*, b.title, b.author, bo.borrow_date, bo.return_date
+        FROM fines f
+        JOIN borrowings bo ON f.borrowing_id = bo.id
+        JOIN books b ON bo.book_id = b.id
+        WHERE f.user_id = ? AND f.status = 'paid'
+        ORDER BY f.paid_at DESC
+        LIMIT 5
+    
+[25-Nov-2025 07:22:51 Asia/Jakarta] Database Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'elara_space.book_request_payments' doesn't exist
+[25-Nov-2025 07:22:51 Asia/Jakarta] Query: 
+        SELECT brp.*, br.title, br.author, br.publisher_name, br.category, br.priority
+        FROM book_request_payments brp
+        JOIN book_requests br ON brp.book_request_id = br.id
+        WHERE brp.user_id = ? AND brp.payment_status = 'unpaid'
+        ORDER BY brp.due_date ASC, brp.created_at DESC
+    
+[25-Nov-2025 07:22:51 Asia/Jakarta] Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'f.paid_at' in 'order clause'
+[25-Nov-2025 07:22:51 Asia/Jakarta] Query: 
+        SELECT f.*, b.title, b.author, bo.borrow_date, bo.return_date
+        FROM fines f
+        JOIN borrowings bo ON f.borrowing_id = bo.id
+        JOIN books b ON bo.book_id = b.id
+        WHERE f.user_id = ? AND f.status = 'paid'
+        ORDER BY f.paid_at DESC
+        LIMIT 5
+    
+[25-Nov-2025 07:22:51 Asia/Jakarta] Database Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'elara_space.book_request_payments' doesn't exist
+[25-Nov-2025 07:22:51 Asia/Jakarta] Query: 
+        SELECT brp.*, br.title, br.author, br.publisher_name, br.category, br.priority
+        FROM book_request_payments brp
+        JOIN book_requests br ON brp.book_request_id = br.id
+        WHERE brp.user_id = ? AND brp.payment_status = 'unpaid'
+        ORDER BY brp.due_date ASC, brp.created_at DESC
+    
+[25-Nov-2025 07:22:51 Asia/Jakarta] Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'f.paid_at' in 'order clause'
+[25-Nov-2025 07:22:51 Asia/Jakarta] Query: 
+        SELECT f.*, b.title, b.author, bo.borrow_date, bo.return_date
+        FROM fines f
+        JOIN borrowings bo ON f.borrowing_id = bo.id
+        JOIN books b ON bo.book_id = b.id
+        WHERE f.user_id = ? AND f.status = 'paid'
+        ORDER BY f.paid_at DESC
+        LIMIT 5
+    
+[25-Nov-2025 07:22:52 Asia/Jakarta] Database Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'elara_space.book_request_payments' doesn't exist
+[25-Nov-2025 07:22:52 Asia/Jakarta] Query: 
+        SELECT brp.*, br.title, br.author, br.publisher_name, br.category, br.priority
+        FROM book_request_payments brp
+        JOIN book_requests br ON brp.book_request_id = br.id
+        WHERE brp.user_id = ? AND brp.payment_status = 'unpaid'
+        ORDER BY brp.due_date ASC, brp.created_at DESC
+    
+[25-Nov-2025 07:22:52 Asia/Jakarta] Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'f.paid_at' in 'order clause'
+[25-Nov-2025 07:22:52 Asia/Jakarta] Query: 
+        SELECT f.*, b.title, b.author, bo.borrow_date, bo.return_date
+        FROM fines f
+        JOIN borrowings bo ON f.borrowing_id = bo.id
+        JOIN books b ON bo.book_id = b.id
+        WHERE f.user_id = ? AND f.status = 'paid'
+        ORDER BY f.paid_at DESC
+        LIMIT 5
+    
+[25-Nov-2025 07:22:53 Asia/Jakarta] Database Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'elara_space.book_request_payments' doesn't exist
+[25-Nov-2025 07:22:53 Asia/Jakarta] Query: 
+        SELECT brp.*, br.title, br.author, br.publisher_name, br.category, br.priority
+        FROM book_request_payments brp
+        JOIN book_requests br ON brp.book_request_id = br.id
+        WHERE brp.user_id = ? AND brp.payment_status = 'unpaid'
+        ORDER BY brp.due_date ASC, brp.created_at DESC
+    
+[25-Nov-2025 07:22:53 Asia/Jakarta] Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'f.paid_at' in 'order clause'
+[25-Nov-2025 07:22:53 Asia/Jakarta] Query: 
+        SELECT f.*, b.title, b.author, bo.borrow_date, bo.return_date
+        FROM fines f
+        JOIN borrowings bo ON f.borrowing_id = bo.id
+        JOIN books b ON bo.book_id = b.id
+        WHERE f.user_id = ? AND f.status = 'paid'
+        ORDER BY f.paid_at DESC
+        LIMIT 5
+    
+[25-Nov-2025 07:22:53 Asia/Jakarta] Database Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'elara_space.book_request_payments' doesn't exist
+[25-Nov-2025 07:22:53 Asia/Jakarta] Query: 
+        SELECT brp.*, br.title, br.author, br.publisher_name, br.category, br.priority
+        FROM book_request_payments brp
+        JOIN book_requests br ON brp.book_request_id = br.id
+        WHERE brp.user_id = ? AND brp.payment_status = 'unpaid'
+        ORDER BY brp.due_date ASC, brp.created_at DESC
+    
+[25-Nov-2025 07:22:53 Asia/Jakarta] Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'f.paid_at' in 'order clause'
+[25-Nov-2025 07:22:53 Asia/Jakarta] Query: 
+        SELECT f.*, b.title, b.author, bo.borrow_date, bo.return_date
+        FROM fines f
+        JOIN borrowings bo ON f.borrowing_id = bo.id
+        JOIN books b ON bo.book_id = b.id
+        WHERE f.user_id = ? AND f.status = 'paid'
+        ORDER BY f.paid_at DESC
+        LIMIT 5
+    
+[25-Nov-2025 07:22:53 Asia/Jakarta] Database Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'elara_space.book_request_payments' doesn't exist
+[25-Nov-2025 07:22:53 Asia/Jakarta] Query: 
+        SELECT brp.*, br.title, br.author, br.publisher_name, br.category, br.priority
+        FROM book_request_payments brp
+        JOIN book_requests br ON brp.book_request_id = br.id
+        WHERE brp.user_id = ? AND brp.payment_status = 'unpaid'
+        ORDER BY brp.due_date ASC, brp.created_at DESC
+    
+[25-Nov-2025 07:22:53 Asia/Jakarta] Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'f.paid_at' in 'order clause'
+[25-Nov-2025 07:22:53 Asia/Jakarta] Query: 
+        SELECT f.*, b.title, b.author, bo.borrow_date, bo.return_date
+        FROM fines f
+        JOIN borrowings bo ON f.borrowing_id = bo.id
+        JOIN books b ON bo.book_id = b.id
+        WHERE f.user_id = ? AND f.status = 'paid'
+        ORDER BY f.paid_at DESC
+        LIMIT 5
+    
+[25-Nov-2025 07:26:38 Asia/Jakarta] Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'f.paid_at' in 'order clause'
+[25-Nov-2025 07:26:38 Asia/Jakarta] Query: 
+        SELECT f.*, b.title, b.author, bo.borrow_date, bo.return_date
+        FROM fines f
+        JOIN borrowings bo ON f.borrowing_id = bo.id
+        JOIN books b ON bo.book_id = b.id
+        WHERE f.user_id = ? AND f.status = 'paid'
+        ORDER BY f.paid_at DESC
+        LIMIT 5
+    
+[25-Nov-2025 07:26:40 Asia/Jakarta] Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'f.paid_at' in 'order clause'
+[25-Nov-2025 07:26:40 Asia/Jakarta] Query: 
+        SELECT f.*, b.title, b.author, bo.borrow_date, bo.return_date
+        FROM fines f
+        JOIN borrowings bo ON f.borrowing_id = bo.id
+        JOIN books b ON bo.book_id = b.id
+        WHERE f.user_id = ? AND f.status = 'paid'
+        ORDER BY f.paid_at DESC
+        LIMIT 5
+    
+[25-Nov-2025 07:27:10 Asia/Jakarta] Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'f.paid_at' in 'order clause'
+[25-Nov-2025 07:27:10 Asia/Jakarta] Query: 
+        SELECT f.*, b.title, b.author, bo.borrow_date, bo.return_date
+        FROM fines f
+        JOIN borrowings bo ON f.borrowing_id = bo.id
+        JOIN books b ON bo.book_id = b.id
+        WHERE f.user_id = ? AND f.status = 'paid'
+        ORDER BY f.paid_at DESC
+        LIMIT 5
+    
+[25-Nov-2025 07:27:46 Asia/Jakarta] Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'f.paid_at' in 'order clause'
+[25-Nov-2025 07:27:46 Asia/Jakarta] Query: 
+        SELECT f.*, b.title, b.author, bo.borrow_date, bo.return_date
+        FROM fines f
+        JOIN borrowings bo ON f.borrowing_id = bo.id
+        JOIN books b ON bo.book_id = b.id
+        WHERE f.user_id = ? AND f.status = 'paid'
+        ORDER BY f.paid_at DESC
+        LIMIT 5
+    
+[25-Nov-2025 07:28:05 Asia/Jakarta] Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'f.paid_at' in 'order clause'
+[25-Nov-2025 07:28:05 Asia/Jakarta] Query: 
+        SELECT f.*, b.title, b.author, bo.borrow_date, bo.return_date
+        FROM fines f
+        JOIN borrowings bo ON f.borrowing_id = bo.id
+        JOIN books b ON bo.book_id = b.id
+        WHERE f.user_id = ? AND f.status = 'paid'
+        ORDER BY f.paid_at DESC
+        LIMIT 5
+    
+[25-Nov-2025 07:28:07 Asia/Jakarta] Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'f.paid_at' in 'order clause'
+[25-Nov-2025 07:28:07 Asia/Jakarta] Query: 
+        SELECT f.*, b.title, b.author, bo.borrow_date, bo.return_date
+        FROM fines f
+        JOIN borrowings bo ON f.borrowing_id = bo.id
+        JOIN books b ON bo.book_id = b.id
+        WHERE f.user_id = ? AND f.status = 'paid'
+        ORDER BY f.paid_at DESC
+        LIMIT 5
+    
+[25-Nov-2025 07:28:07 Asia/Jakarta] Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'f.paid_at' in 'order clause'
+[25-Nov-2025 07:28:07 Asia/Jakarta] Query: 
+        SELECT f.*, b.title, b.author, bo.borrow_date, bo.return_date
+        FROM fines f
+        JOIN borrowings bo ON f.borrowing_id = bo.id
+        JOIN books b ON bo.book_id = b.id
+        WHERE f.user_id = ? AND f.status = 'paid'
+        ORDER BY f.paid_at DESC
+        LIMIT 5
+    
+[25-Nov-2025 07:28:07 Asia/Jakarta] Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'f.paid_at' in 'order clause'
+[25-Nov-2025 07:28:07 Asia/Jakarta] Query: 
+        SELECT f.*, b.title, b.author, bo.borrow_date, bo.return_date
+        FROM fines f
+        JOIN borrowings bo ON f.borrowing_id = bo.id
+        JOIN books b ON bo.book_id = b.id
+        WHERE f.user_id = ? AND f.status = 'paid'
+        ORDER BY f.paid_at DESC
+        LIMIT 5
+    
+[25-Nov-2025 07:28:07 Asia/Jakarta] Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'f.paid_at' in 'order clause'
+[25-Nov-2025 07:28:07 Asia/Jakarta] Query: 
+        SELECT f.*, b.title, b.author, bo.borrow_date, bo.return_date
+        FROM fines f
+        JOIN borrowings bo ON f.borrowing_id = bo.id
+        JOIN books b ON bo.book_id = b.id
+        WHERE f.user_id = ? AND f.status = 'paid'
+        ORDER BY f.paid_at DESC
+        LIMIT 5
+    
+[25-Nov-2025 07:28:07 Asia/Jakarta] Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'f.paid_at' in 'order clause'
+[25-Nov-2025 07:28:07 Asia/Jakarta] Query: 
+        SELECT f.*, b.title, b.author, bo.borrow_date, bo.return_date
+        FROM fines f
+        JOIN borrowings bo ON f.borrowing_id = bo.id
+        JOIN books b ON bo.book_id = b.id
+        WHERE f.user_id = ? AND f.status = 'paid'
+        ORDER BY f.paid_at DESC
+        LIMIT 5
+    
+[25-Nov-2025 07:28:08 Asia/Jakarta] Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'f.paid_at' in 'order clause'
+[25-Nov-2025 07:28:08 Asia/Jakarta] Query: 
+        SELECT f.*, b.title, b.author, bo.borrow_date, bo.return_date
+        FROM fines f
+        JOIN borrowings bo ON f.borrowing_id = bo.id
+        JOIN books b ON bo.book_id = b.id
+        WHERE f.user_id = ? AND f.status = 'paid'
+        ORDER BY f.paid_at DESC
+        LIMIT 5
+    
+[25-Nov-2025 07:28:08 Asia/Jakarta] Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'f.paid_at' in 'order clause'
+[25-Nov-2025 07:28:08 Asia/Jakarta] Query: 
+        SELECT f.*, b.title, b.author, bo.borrow_date, bo.return_date
+        FROM fines f
+        JOIN borrowings bo ON f.borrowing_id = bo.id
+        JOIN books b ON bo.book_id = b.id
+        WHERE f.user_id = ? AND f.status = 'paid'
+        ORDER BY f.paid_at DESC
+        LIMIT 5
+    
+[25-Nov-2025 07:28:08 Asia/Jakarta] Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'f.paid_at' in 'order clause'
+[25-Nov-2025 07:28:08 Asia/Jakarta] Query: 
+        SELECT f.*, b.title, b.author, bo.borrow_date, bo.return_date
+        FROM fines f
+        JOIN borrowings bo ON f.borrowing_id = bo.id
+        JOIN books b ON bo.book_id = b.id
+        WHERE f.user_id = ? AND f.status = 'paid'
+        ORDER BY f.paid_at DESC
+        LIMIT 5
+    
+[25-Nov-2025 07:28:09 Asia/Jakarta] Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'f.paid_at' in 'order clause'
+[25-Nov-2025 07:28:09 Asia/Jakarta] Query: 
+        SELECT f.*, b.title, b.author, bo.borrow_date, bo.return_date
+        FROM fines f
+        JOIN borrowings bo ON f.borrowing_id = bo.id
+        JOIN books b ON bo.book_id = b.id
+        WHERE f.user_id = ? AND f.status = 'paid'
+        ORDER BY f.paid_at DESC
+        LIMIT 5
+    
+[25-Nov-2025 07:32:22 Asia/Jakarta] Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'f.paid_at' in 'order clause'
+[25-Nov-2025 07:32:22 Asia/Jakarta] Query: 
+        SELECT f.*, b.title, b.author, bo.borrow_date, bo.return_date
+        FROM fines f
+        JOIN borrowings bo ON f.borrowing_id = bo.id
+        JOIN books b ON bo.book_id = b.id
+        WHERE f.user_id = ? AND f.status = 'paid'
+        ORDER BY f.paid_at DESC
+        LIMIT 5
+    
+[25-Nov-2025 07:33:04 Asia/Jakarta] Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'f.paid_at' in 'order clause'
+[25-Nov-2025 07:33:04 Asia/Jakarta] Query: 
+        SELECT f.*, b.title, b.author, bo.borrow_date, bo.return_date
+        FROM fines f
+        JOIN borrowings bo ON f.borrowing_id = bo.id
+        JOIN books b ON bo.book_id = b.id
+        WHERE f.user_id = ? AND f.status = 'paid'
+        ORDER BY f.paid_at DESC
+        LIMIT 5
+    
+[25-Nov-2025 07:33:04 Asia/Jakarta] Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'f.paid_at' in 'order clause'
+[25-Nov-2025 07:33:04 Asia/Jakarta] Query: 
+        SELECT f.*, b.title, b.author, bo.borrow_date, bo.return_date
+        FROM fines f
+        JOIN borrowings bo ON f.borrowing_id = bo.id
+        JOIN books b ON bo.book_id = b.id
+        WHERE f.user_id = ? AND f.status = 'paid'
+        ORDER BY f.paid_at DESC
+        LIMIT 5
+    
+[25-Nov-2025 07:33:04 Asia/Jakarta] Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'f.paid_at' in 'order clause'
+[25-Nov-2025 07:33:04 Asia/Jakarta] Query: 
+        SELECT f.*, b.title, b.author, bo.borrow_date, bo.return_date
+        FROM fines f
+        JOIN borrowings bo ON f.borrowing_id = bo.id
+        JOIN books b ON bo.book_id = b.id
+        WHERE f.user_id = ? AND f.status = 'paid'
+        ORDER BY f.paid_at DESC
+        LIMIT 5
+    
+[25-Nov-2025 07:33:04 Asia/Jakarta] Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'f.paid_at' in 'order clause'
+[25-Nov-2025 07:33:04 Asia/Jakarta] Query: 
+        SELECT f.*, b.title, b.author, bo.borrow_date, bo.return_date
+        FROM fines f
+        JOIN borrowings bo ON f.borrowing_id = bo.id
+        JOIN books b ON bo.book_id = b.id
+        WHERE f.user_id = ? AND f.status = 'paid'
+        ORDER BY f.paid_at DESC
+        LIMIT 5
+    
+[25-Nov-2025 07:33:26 Asia/Jakarta] Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'f.paid_at' in 'order clause'
+[25-Nov-2025 07:33:26 Asia/Jakarta] Query: 
+        SELECT f.*, b.title, b.author, bo.borrow_date, bo.return_date
+        FROM fines f
+        JOIN borrowings bo ON f.borrowing_id = bo.id
+        JOIN books b ON bo.book_id = b.id
+        WHERE f.user_id = ? AND f.status = 'paid'
+        ORDER BY f.paid_at DESC
+        LIMIT 5
+    
+[25-Nov-2025 07:33:40 Asia/Jakarta] Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'f.paid_at' in 'order clause'
+[25-Nov-2025 07:33:40 Asia/Jakarta] Query: 
+        SELECT f.*, b.title, b.author, bo.borrow_date, bo.return_date
+        FROM fines f
+        JOIN borrowings bo ON f.borrowing_id = bo.id
+        JOIN books b ON bo.book_id = b.id
+        WHERE f.user_id = ? AND f.status = 'paid'
+        ORDER BY f.paid_at DESC
+        LIMIT 5
+    
+[25-Nov-2025 07:44:27 Asia/Jakarta] Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'f.paid_at' in 'order clause'
+[25-Nov-2025 07:44:27 Asia/Jakarta] Query: 
+        SELECT f.*, b.title, b.author, bo.borrow_date, bo.return_date
+        FROM fines f
+        JOIN borrowings bo ON f.borrowing_id = bo.id
+        JOIN books b ON bo.book_id = b.id
+        WHERE f.user_id = ? AND f.status = 'paid'
+        ORDER BY f.paid_at DESC
+        LIMIT 5
+    
+[25-Nov-2025 07:44:28 Asia/Jakarta] Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'f.paid_at' in 'order clause'
+[25-Nov-2025 07:44:28 Asia/Jakarta] Query: 
+        SELECT f.*, b.title, b.author, bo.borrow_date, bo.return_date
+        FROM fines f
+        JOIN borrowings bo ON f.borrowing_id = bo.id
+        JOIN books b ON bo.book_id = b.id
+        WHERE f.user_id = ? AND f.status = 'paid'
+        ORDER BY f.paid_at DESC
+        LIMIT 5
+    
+[25-Nov-2025 07:44:28 Asia/Jakarta] Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'f.paid_at' in 'order clause'
+[25-Nov-2025 07:44:28 Asia/Jakarta] Query: 
+        SELECT f.*, b.title, b.author, bo.borrow_date, bo.return_date
+        FROM fines f
+        JOIN borrowings bo ON f.borrowing_id = bo.id
+        JOIN books b ON bo.book_id = b.id
+        WHERE f.user_id = ? AND f.status = 'paid'
+        ORDER BY f.paid_at DESC
+        LIMIT 5
+    
+[25-Nov-2025 07:45:09 Asia/Jakarta] Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'f.paid_at' in 'order clause'
+[25-Nov-2025 07:45:09 Asia/Jakarta] Query: 
+        SELECT f.*, b.title, b.author, bo.borrow_date, bo.return_date
+        FROM fines f
+        JOIN borrowings bo ON f.borrowing_id = bo.id
+        JOIN books b ON bo.book_id = b.id
+        WHERE f.user_id = ? AND f.status = 'paid'
+        ORDER BY f.paid_at DESC
+        LIMIT 5
+    
+[25-Nov-2025 07:47:30 Asia/Jakarta] Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'f.paid_at' in 'order clause'
+[25-Nov-2025 07:47:30 Asia/Jakarta] Query: 
+        SELECT f.*, b.title, b.author, bo.borrow_date, bo.return_date
+        FROM fines f
+        JOIN borrowings bo ON f.borrowing_id = bo.id
+        JOIN books b ON bo.book_id = b.id
+        WHERE f.user_id = ? AND f.status = 'paid'
+        ORDER BY f.paid_at DESC
+        LIMIT 5
+    
+[25-Nov-2025 07:47:30 Asia/Jakarta] Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'f.paid_at' in 'order clause'
+[25-Nov-2025 07:47:30 Asia/Jakarta] Query: 
+        SELECT f.*, b.title, b.author, bo.borrow_date, bo.return_date
+        FROM fines f
+        JOIN borrowings bo ON f.borrowing_id = bo.id
+        JOIN books b ON bo.book_id = b.id
+        WHERE f.user_id = ? AND f.status = 'paid'
+        ORDER BY f.paid_at DESC
+        LIMIT 5
+    
+[25-Nov-2025 07:47:30 Asia/Jakarta] Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'f.paid_at' in 'order clause'
+[25-Nov-2025 07:47:30 Asia/Jakarta] Query: 
+        SELECT f.*, b.title, b.author, bo.borrow_date, bo.return_date
+        FROM fines f
+        JOIN borrowings bo ON f.borrowing_id = bo.id
+        JOIN books b ON bo.book_id = b.id
+        WHERE f.user_id = ? AND f.status = 'paid'
+        ORDER BY f.paid_at DESC
+        LIMIT 5
+    
+[25-Nov-2025 07:49:56 Asia/Jakarta] Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'f.paid_at' in 'order clause'
+[25-Nov-2025 07:49:56 Asia/Jakarta] Query: 
+        SELECT f.*, b.title, b.author, bo.borrow_date, bo.return_date
+        FROM fines f
+        JOIN borrowings bo ON f.borrowing_id = bo.id
+        JOIN books b ON bo.book_id = b.id
+        WHERE f.user_id = ? AND f.status = 'paid'
+        ORDER BY f.paid_at DESC
+        LIMIT 5
+    
+[25-Nov-2025 07:49:57 Asia/Jakarta] Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'f.paid_at' in 'order clause'
+[25-Nov-2025 07:49:57 Asia/Jakarta] Query: 
+        SELECT f.*, b.title, b.author, bo.borrow_date, bo.return_date
+        FROM fines f
+        JOIN borrowings bo ON f.borrowing_id = bo.id
+        JOIN books b ON bo.book_id = b.id
+        WHERE f.user_id = ? AND f.status = 'paid'
+        ORDER BY f.paid_at DESC
+        LIMIT 5
+    
+[25-Nov-2025 07:49:57 Asia/Jakarta] Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'f.paid_at' in 'order clause'
+[25-Nov-2025 07:49:57 Asia/Jakarta] Query: 
+        SELECT f.*, b.title, b.author, bo.borrow_date, bo.return_date
+        FROM fines f
+        JOIN borrowings bo ON f.borrowing_id = bo.id
+        JOIN books b ON bo.book_id = b.id
+        WHERE f.user_id = ? AND f.status = 'paid'
+        ORDER BY f.paid_at DESC
+        LIMIT 5
+    
+[25-Nov-2025 07:50:29 Asia/Jakarta] Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'f.paid_at' in 'order clause'
+[25-Nov-2025 07:50:29 Asia/Jakarta] Query: 
+        SELECT f.*, b.title, b.author, bo.borrow_date, bo.return_date
+        FROM fines f
+        JOIN borrowings bo ON f.borrowing_id = bo.id
+        JOIN books b ON bo.book_id = b.id
+        WHERE f.user_id = ? AND f.status = 'paid'
+        ORDER BY f.paid_at DESC
+        LIMIT 5
+    
+[25-Nov-2025 07:50:30 Asia/Jakarta] Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'f.paid_at' in 'order clause'
+[25-Nov-2025 07:50:30 Asia/Jakarta] Query: 
+        SELECT f.*, b.title, b.author, bo.borrow_date, bo.return_date
+        FROM fines f
+        JOIN borrowings bo ON f.borrowing_id = bo.id
+        JOIN books b ON bo.book_id = b.id
+        WHERE f.user_id = ? AND f.status = 'paid'
+        ORDER BY f.paid_at DESC
+        LIMIT 5
+    
+[25-Nov-2025 07:50:36 Asia/Jakarta] Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'f.paid_at' in 'order clause'
+[25-Nov-2025 07:50:36 Asia/Jakarta] Query: 
+        SELECT f.*, b.title, b.author, bo.borrow_date, bo.return_date
+        FROM fines f
+        JOIN borrowings bo ON f.borrowing_id = bo.id
+        JOIN books b ON bo.book_id = b.id
+        WHERE f.user_id = ? AND f.status = 'paid'
+        ORDER BY f.paid_at DESC
+        LIMIT 5
+    
+[25-Nov-2025 07:50:36 Asia/Jakarta] Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'f.paid_at' in 'order clause'
+[25-Nov-2025 07:50:36 Asia/Jakarta] Query: 
+        SELECT f.*, b.title, b.author, bo.borrow_date, bo.return_date
+        FROM fines f
+        JOIN borrowings bo ON f.borrowing_id = bo.id
+        JOIN books b ON bo.book_id = b.id
+        WHERE f.user_id = ? AND f.status = 'paid'
+        ORDER BY f.paid_at DESC
+        LIMIT 5
+    
+[25-Nov-2025 07:50:37 Asia/Jakarta] Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'f.paid_at' in 'order clause'
+[25-Nov-2025 07:50:37 Asia/Jakarta] Query: 
+        SELECT f.*, b.title, b.author, bo.borrow_date, bo.return_date
+        FROM fines f
+        JOIN borrowings bo ON f.borrowing_id = bo.id
+        JOIN books b ON bo.book_id = b.id
+        WHERE f.user_id = ? AND f.status = 'paid'
+        ORDER BY f.paid_at DESC
+        LIMIT 5
+    
+[25-Nov-2025 07:50:37 Asia/Jakarta] Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'f.paid_at' in 'order clause'
+[25-Nov-2025 07:50:37 Asia/Jakarta] Query: 
+        SELECT f.*, b.title, b.author, bo.borrow_date, bo.return_date
+        FROM fines f
+        JOIN borrowings bo ON f.borrowing_id = bo.id
+        JOIN books b ON bo.book_id = b.id
+        WHERE f.user_id = ? AND f.status = 'paid'
+        ORDER BY f.paid_at DESC
+        LIMIT 5
+    
+[25-Nov-2025 07:50:38 Asia/Jakarta] Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'f.paid_at' in 'order clause'
+[25-Nov-2025 07:50:38 Asia/Jakarta] Query: 
+        SELECT f.*, b.title, b.author, bo.borrow_date, bo.return_date
+        FROM fines f
+        JOIN borrowings bo ON f.borrowing_id = bo.id
+        JOIN books b ON bo.book_id = b.id
+        WHERE f.user_id = ? AND f.status = 'paid'
+        ORDER BY f.paid_at DESC
+        LIMIT 5
+    
+[25-Nov-2025 07:50:38 Asia/Jakarta] Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'f.paid_at' in 'order clause'
+[25-Nov-2025 07:50:38 Asia/Jakarta] Query: 
+        SELECT f.*, b.title, b.author, bo.borrow_date, bo.return_date
+        FROM fines f
+        JOIN borrowings bo ON f.borrowing_id = bo.id
+        JOIN books b ON bo.book_id = b.id
+        WHERE f.user_id = ? AND f.status = 'paid'
+        ORDER BY f.paid_at DESC
+        LIMIT 5
+    
+[25-Nov-2025 07:50:38 Asia/Jakarta] Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'f.paid_at' in 'order clause'
+[25-Nov-2025 07:50:38 Asia/Jakarta] Query: 
+        SELECT f.*, b.title, b.author, bo.borrow_date, bo.return_date
+        FROM fines f
+        JOIN borrowings bo ON f.borrowing_id = bo.id
+        JOIN books b ON bo.book_id = b.id
+        WHERE f.user_id = ? AND f.status = 'paid'
+        ORDER BY f.paid_at DESC
+        LIMIT 5
+    
+[25-Nov-2025 07:50:38 Asia/Jakarta] Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'f.paid_at' in 'order clause'
+[25-Nov-2025 07:50:38 Asia/Jakarta] Query: 
+        SELECT f.*, b.title, b.author, bo.borrow_date, bo.return_date
+        FROM fines f
+        JOIN borrowings bo ON f.borrowing_id = bo.id
+        JOIN books b ON bo.book_id = b.id
+        WHERE f.user_id = ? AND f.status = 'paid'
+        ORDER BY f.paid_at DESC
+        LIMIT 5
+    
+[25-Nov-2025 07:50:38 Asia/Jakarta] Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'f.paid_at' in 'order clause'
+[25-Nov-2025 07:50:38 Asia/Jakarta] Query: 
+        SELECT f.*, b.title, b.author, bo.borrow_date, bo.return_date
+        FROM fines f
+        JOIN borrowings bo ON f.borrowing_id = bo.id
+        JOIN books b ON bo.book_id = b.id
+        WHERE f.user_id = ? AND f.status = 'paid'
+        ORDER BY f.paid_at DESC
+        LIMIT 5
+    
+[25-Nov-2025 07:50:49 Asia/Jakarta] Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'f.paid_at' in 'order clause'
+[25-Nov-2025 07:50:49 Asia/Jakarta] Query: 
+        SELECT f.*, b.title, b.author, bo.borrow_date, bo.return_date
+        FROM fines f
+        JOIN borrowings bo ON f.borrowing_id = bo.id
+        JOIN books b ON bo.book_id = b.id
+        WHERE f.user_id = ? AND f.status = 'paid'
+        ORDER BY f.paid_at DESC
+        LIMIT 5
+    
+[25-Nov-2025 07:50:49 Asia/Jakarta] Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'f.paid_at' in 'order clause'
+[25-Nov-2025 07:50:49 Asia/Jakarta] Query: 
+        SELECT f.*, b.title, b.author, bo.borrow_date, bo.return_date
+        FROM fines f
+        JOIN borrowings bo ON f.borrowing_id = bo.id
+        JOIN books b ON bo.book_id = b.id
+        WHERE f.user_id = ? AND f.status = 'paid'
+        ORDER BY f.paid_at DESC
+        LIMIT 5
+    
+[25-Nov-2025 07:50:49 Asia/Jakarta] Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'f.paid_at' in 'order clause'
+[25-Nov-2025 07:50:49 Asia/Jakarta] Query: 
+        SELECT f.*, b.title, b.author, bo.borrow_date, bo.return_date
+        FROM fines f
+        JOIN borrowings bo ON f.borrowing_id = bo.id
+        JOIN books b ON bo.book_id = b.id
+        WHERE f.user_id = ? AND f.status = 'paid'
+        ORDER BY f.paid_at DESC
+        LIMIT 5
+    
+[25-Nov-2025 07:52:34 Asia/Jakarta] Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'f.paid_at' in 'order clause'
+[25-Nov-2025 07:52:34 Asia/Jakarta] Query: 
+        SELECT f.*, b.title, b.author, bo.borrow_date, bo.return_date
+        FROM fines f
+        JOIN borrowings bo ON f.borrowing_id = bo.id
+        JOIN books b ON bo.book_id = b.id
+        WHERE f.user_id = ? AND f.status = 'paid'
+        ORDER BY f.paid_at DESC
+        LIMIT 5
+    
+[25-Nov-2025 07:52:35 Asia/Jakarta] Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'f.paid_at' in 'order clause'
+[25-Nov-2025 07:52:35 Asia/Jakarta] Query: 
+        SELECT f.*, b.title, b.author, bo.borrow_date, bo.return_date
+        FROM fines f
+        JOIN borrowings bo ON f.borrowing_id = bo.id
+        JOIN books b ON bo.book_id = b.id
+        WHERE f.user_id = ? AND f.status = 'paid'
+        ORDER BY f.paid_at DESC
+        LIMIT 5
+    
+[25-Nov-2025 07:52:35 Asia/Jakarta] Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'f.paid_at' in 'order clause'
+[25-Nov-2025 07:52:35 Asia/Jakarta] Query: 
+        SELECT f.*, b.title, b.author, bo.borrow_date, bo.return_date
+        FROM fines f
+        JOIN borrowings bo ON f.borrowing_id = bo.id
+        JOIN books b ON bo.book_id = b.id
+        WHERE f.user_id = ? AND f.status = 'paid'
+        ORDER BY f.paid_at DESC
+        LIMIT 5
+    
+[25-Nov-2025 07:52:41 Asia/Jakarta] Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'f.paid_at' in 'order clause'
+[25-Nov-2025 07:52:41 Asia/Jakarta] Query: 
+        SELECT f.*, b.title, b.author, bo.borrow_date, bo.return_date
+        FROM fines f
+        JOIN borrowings bo ON f.borrowing_id = bo.id
+        JOIN books b ON bo.book_id = b.id
+        WHERE f.user_id = ? AND f.status = 'paid'
+        ORDER BY f.paid_at DESC
+        LIMIT 5
+    
+[25-Nov-2025 07:53:51 Asia/Jakarta] Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'f.paid_at' in 'order clause'
+[25-Nov-2025 07:53:51 Asia/Jakarta] Query: 
+        SELECT f.*, b.title, b.author, bo.borrow_date, bo.return_date
+        FROM fines f
+        JOIN borrowings bo ON f.borrowing_id = bo.id
+        JOIN books b ON bo.book_id = b.id
+        WHERE f.user_id = ? AND f.status = 'paid'
+        ORDER BY f.paid_at DESC
+        LIMIT 5
+    
+[25-Nov-2025 07:54:34 Asia/Jakarta] Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'f.paid_at' in 'order clause'
+[25-Nov-2025 07:54:34 Asia/Jakarta] Query: 
+        SELECT f.*, b.title, b.author, bo.borrow_date, bo.return_date
+        FROM fines f
+        JOIN borrowings bo ON f.borrowing_id = bo.id
+        JOIN books b ON bo.book_id = b.id
+        WHERE f.user_id = ? AND f.status = 'paid'
+        ORDER BY f.paid_at DESC
+        LIMIT 5
+    

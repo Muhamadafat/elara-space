@@ -114,6 +114,75 @@ $totalRequests = count($requests);
 $pendingRequests = count(array_filter($requests, fn($r) => $r['status'] === 'pending'));
 $approvedRequests = count(array_filter($requests, fn($r) => in_array($r['status'], ['approved', 'ordered', 'completed'])));
 
+// Handle payment for book request invoices
+if (isset($_POST['pay_invoice'])) {
+    $invoiceId = (int)$_POST['invoice_id'];
+    $paymentMethod = $_POST['payment_method'] ?? '';
+
+    // Update payment status to paid
+    if ($db->execute("UPDATE book_request_payments SET payment_status = 'paid', payment_date = NOW(), payment_method = ? WHERE id = ? AND user_id = ?", [$paymentMethod, $invoiceId, $currentUser['id']])) {
+        redirect(SITE_URL . '/user/requests.php', 'Pembayaran berhasil! Admin akan segera memproses pemesanan buku Anda.', 'success');
+    } else {
+        redirect(SITE_URL . '/user/requests.php', 'Pembayaran gagal. Silakan coba lagi.', 'error');
+    }
+}
+
+// Get unpaid invoices for book requests (for pending requests)
+try {
+    $unpaidInvoices = $db->fetchAll("
+        SELECT brp.*, br.title, br.author, br.publisher_name, br.category, br.priority, br.status as request_status
+        FROM book_request_payments brp
+        JOIN book_requests br ON brp.book_request_id = br.id
+        WHERE brp.user_id = ? AND brp.payment_status = 'unpaid' AND br.status = 'pending'
+        ORDER BY brp.due_date ASC, brp.created_at DESC
+    ", [$currentUser['id']]);
+} catch (Exception $e) {
+    $unpaidInvoices = [];
+}
+
+// Get payment info for each request (to show payment status on cards)
+$requestPayments = [];
+try {
+    $payments = $db->fetchAll("
+        SELECT id, book_request_id, payment_status, payment_date, payment_method, invoice_number, amount
+        FROM book_request_payments
+        WHERE user_id = ?
+    ", [$currentUser['id']]);
+
+    foreach ($payments as $payment) {
+        $requestPayments[$payment['book_request_id']] = $payment;
+    }
+} catch (Exception $e) {
+    // Ignore
+}
+
+// Get payment history for user
+try {
+    $paymentHistory = $db->fetchAll("
+        SELECT f.*, b.title, b.author, bo.borrow_date, bo.return_date
+        FROM fines f
+        JOIN borrowings bo ON f.borrowing_id = bo.id
+        JOIN books b ON bo.book_id = b.id
+        WHERE f.user_id = ? AND f.status = 'paid'
+        ORDER BY f.paid_at DESC
+        LIMIT 5
+    ", [$currentUser['id']]);
+
+    // Get payment statistics
+    $paymentStats = $db->fetchOne("
+        SELECT
+            COUNT(CASE WHEN status = 'paid' THEN 1 END) as total_paid_count,
+            COALESCE(SUM(CASE WHEN status = 'paid' THEN amount ELSE 0 END), 0) as total_paid_amount,
+            COUNT(CASE WHEN status = 'unpaid' THEN 1 END) as unpaid_count,
+            COALESCE(SUM(CASE WHEN status = 'unpaid' THEN amount ELSE 0 END), 0) as unpaid_amount
+        FROM fines
+        WHERE user_id = ?
+    ", [$currentUser['id']]);
+} catch (Exception $e) {
+    $paymentHistory = [];
+    $paymentStats = ['total_paid_count' => 0, 'total_paid_amount' => 0, 'unpaid_count' => 0, 'unpaid_amount' => 0];
+}
+
 // Helper function for priority badges
 function getPriorityBadge($priority) {
     $badges = [
@@ -281,9 +350,69 @@ $pageTitle = 'Request Saya - ' . SITE_NAME;
                                     </div>
                                     <div class="col-md-3 text-md-end mt-3 mt-md-0">
                                         <?php echo getStatusBadge($request['status']); ?>
-                                        <?php if ($request['status'] === 'pending'): ?>
+
+                                        <?php
+                                        // Get payment info for this request
+                                        $payment = $requestPayments[$request['id']] ?? null;
+                                        ?>
+
+                                        <?php if ($payment): ?>
+                                            <!-- Payment Status -->
                                             <div class="mt-3">
-                                                <button class="btn btn-sm btn-outline-danger" onclick="cancelRequest(<?php echo $request['id']; ?>, '<?php echo htmlspecialchars($request['title']); ?>')">
+                                                <?php if ($payment['payment_status'] === 'paid'): ?>
+                                                    <!-- Paid Status -->
+                                                    <div class="alert alert-success alert-sm py-2 px-3 mb-2" style="border-left: 4px solid #10B981;">
+                                                        <div class="d-flex align-items-center mb-2">
+                                                            <i class="bi bi-check-circle-fill me-2" style="font-size: 1.5rem;"></i>
+                                                            <strong>Sudah Dibayar</strong>
+                                                        </div>
+                                                        <div class="mt-2">
+                                                            <small class="d-block"><i class="bi bi-calendar-check me-1"></i><?php echo formatDateTime($payment['payment_date'], 'd M Y H:i'); ?></small>
+                                                            <small class="d-block mt-1">
+                                                                <i class="bi bi-wallet2 me-1"></i>
+                                                                <strong>via <?php echo $payment['payment_method']; ?></strong>
+                                                            </small>
+                                                            <small class="d-block mt-1"><i class="bi bi-hash me-1"></i><?php echo $payment['invoice_number']; ?></small>
+                                                            <div class="mt-2 pt-2" style="border-top: 1px solid rgba(16, 185, 129, 0.2);">
+                                                                <small class="text-muted">Jumlah Dibayar:</small><br>
+                                                                <strong class="text-success"><?php echo formatCurrency($payment['amount']); ?></strong>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                <?php else: ?>
+                                                    <!-- Unpaid Invoice -->
+                                                    <div class="alert alert-warning alert-sm py-3 px-3 mb-2" style="border-left: 4px solid #F59E0B; background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);">
+                                                        <div class="d-flex align-items-center mb-2">
+                                                            <i class="bi bi-exclamation-triangle-fill me-2 text-warning" style="font-size: 1.8rem;"></i>
+                                                            <strong class="text-dark">Menunggu Pembayaran</strong>
+                                                        </div>
+                                                        <div class="mt-2">
+                                                            <small class="d-block text-dark"><i class="bi bi-hash me-1"></i><strong><?php echo $payment['invoice_number']; ?></strong></small>
+                                                            <div class="mt-2 pt-2" style="border-top: 2px solid rgba(245, 158, 11, 0.3);">
+                                                                <small class="text-dark fw-bold">Total Pembayaran:</small><br>
+                                                                <h5 class="text-danger fw-bold mb-0"><?php echo formatCurrency($payment['amount']); ?></h5>
+                                                            </div>
+
+                                                            <!-- Payment Button - Always show if unpaid -->
+                                                            <div class="mt-3 d-grid">
+                                                                <button class="btn btn-warning fw-bold shadow-sm"
+                                                                        onclick="payInvoice(<?php echo $payment['id']; ?>, '<?php echo htmlspecialchars($request['title']); ?>', '<?php echo $payment['invoice_number']; ?>', <?php echo $payment['amount']; ?>)"
+                                                                        style="padding: 0.6rem 1rem; border: 2px solid #D97706;">
+                                                                    <i class="bi bi-credit-card me-2"></i>💳 BAYAR SEKARANG
+                                                                </button>
+                                                            </div>
+                                                            <small class="d-block text-center mt-2 text-muted">
+                                                                <i class="bi bi-info-circle me-1"></i>Pilih metode: GoPay, OVO, DANA, Transfer Bank
+                                                            </small>
+                                                        </div>
+                                                    </div>
+                                                <?php endif; ?>
+                                            </div>
+                                        <?php endif; ?>
+
+                                        <?php if ($request['status'] === 'pending'): ?>
+                                            <div class="mt-2">
+                                                <button class="btn btn-sm btn-outline-danger w-100" onclick="cancelRequest(<?php echo $request['id']; ?>, '<?php echo htmlspecialchars($request['title']); ?>')">
                                                     <i class="bi bi-x-circle me-1"></i>Batalkan
                                                 </button>
                                             </div>
@@ -302,6 +431,109 @@ $pageTitle = 'Request Saya - ' . SITE_NAME;
                     <?php endif; ?>
                 </div>
             </div>
+
+
+            <!-- Payment History Section -->
+            <?php if (!empty($paymentHistory)): ?>
+            <div class="row mt-5">
+                <div class="col-12">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h4 class="fw-bold mb-0">
+                            <i class="bi bi-receipt-cutoff me-2 text-success"></i>Riwayat Pembayaran Denda
+                        </h4>
+                        <a href="<?php echo SITE_URL; ?>/user/fines.php" class="btn btn-sm btn-outline-success">
+                            <i class="bi bi-arrow-right me-2"></i>Lihat Semua Denda
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Payment Stats Mini Cards -->
+                <div class="col-md-6 mb-3">
+                    <div class="stats-card" style="border-left-color: #10B981;">
+                        <div class="d-flex align-items-center">
+                            <div class="flex-grow-1">
+                                <h4 class="fw-bold mb-0 text-success"><?php echo formatCurrency($paymentStats['total_paid_amount'] ?? 0); ?></h4>
+                                <p class="text-muted mb-0 small">Total Denda Dibayar (<?php echo $paymentStats['total_paid_count'] ?? 0; ?> transaksi)</p>
+                            </div>
+                            <div class="text-success" style="font-size: 2rem;">
+                                <i class="bi bi-check-circle-fill"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <div class="stats-card" style="border-left-color: <?php echo ($paymentStats['unpaid_amount'] ?? 0) > 0 ? '#EF4444' : '#6B7280'; ?>;">
+                        <div class="d-flex align-items-center">
+                            <div class="flex-grow-1">
+                                <h4 class="fw-bold mb-0 <?php echo ($paymentStats['unpaid_amount'] ?? 0) > 0 ? 'text-danger' : 'text-muted'; ?>">
+                                    <?php echo formatCurrency($paymentStats['unpaid_amount'] ?? 0); ?>
+                                </h4>
+                                <p class="text-muted mb-0 small">Denda Belum Dibayar (<?php echo $paymentStats['unpaid_count'] ?? 0; ?> denda)</p>
+                            </div>
+                            <div class="<?php echo ($paymentStats['unpaid_amount'] ?? 0) > 0 ? 'text-danger' : 'text-muted'; ?>" style="font-size: 2rem;">
+                                <i class="bi bi-exclamation-circle-fill"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Payment History Table -->
+                <div class="col-12">
+                    <div class="card border-0 shadow-sm" style="border-radius: 12px;">
+                        <div class="card-body p-0">
+                            <div class="table-responsive">
+                                <table class="table table-hover mb-0">
+                                    <thead style="background: #F9FAFB;">
+                                        <tr>
+                                            <th class="border-0 py-3">Buku</th>
+                                            <th class="border-0 py-3">Tgl Dikembalikan</th>
+                                            <th class="border-0 py-3">Terlambat</th>
+                                            <th class="border-0 py-3">Jumlah</th>
+                                            <th class="border-0 py-3">Dibayar</th>
+                                            <th class="border-0 py-3">Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php foreach ($paymentHistory as $payment): ?>
+                                            <tr>
+                                                <td>
+                                                    <div class="fw-bold text-dark"><?php echo htmlspecialchars($payment['title']); ?></div>
+                                                    <small class="text-muted"><?php echo htmlspecialchars($payment['author']); ?></small>
+                                                </td>
+                                                <td>
+                                                    <span class="text-muted"><?php echo formatDateTime($payment['return_date'], 'd M Y'); ?></span>
+                                                </td>
+                                                <td>
+                                                    <span class="badge bg-warning text-dark">
+                                                        <i class="bi bi-clock-fill me-1"></i><?php echo $payment['days_late']; ?> hari
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    <strong class="text-danger"><?php echo formatCurrency($payment['amount']); ?></strong>
+                                                </td>
+                                                <td>
+                                                    <span class="text-muted small"><?php echo formatDateTime($payment['paid_at'], 'd M Y'); ?></span>
+                                                </td>
+                                                <td>
+                                                    <span class="badge bg-success">
+                                                        <i class="bi bi-check-circle-fill me-1"></i>Lunas
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white border-0 text-center" style="border-radius: 0 0 12px 12px;">
+                            <a href="<?php echo SITE_URL; ?>/user/fines.php" class="btn btn-sm btn-success">
+                                <i class="bi bi-receipt me-2"></i>Lihat Semua Riwayat Pembayaran
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <?php endif; ?>
         </div>
     </div>
 
@@ -328,6 +560,74 @@ $pageTitle = 'Request Saya - ' . SITE_NAME;
                     `;
                     document.body.appendChild(form);
                     form.submit();
+                }
+            });
+        }
+
+        // Payment Functions for Book Request Invoices
+        function payInvoice(id, title, invoiceNumber, amount) {
+            const formattedAmount = new Intl.NumberFormat('id-ID', {
+                style: 'currency',
+                currency: 'IDR',
+                minimumFractionDigits: 0
+            }).format(amount);
+
+            Swal.fire({
+                title: 'Pembayaran Buku Request',
+                html: `
+                    <div class="text-start">
+                        <p class="mb-2"><strong>Buku:</strong> ${title}</p>
+                        <p class="mb-3 small text-muted"><i class="bi bi-hash me-1"></i>Invoice: ${invoiceNumber}</p>
+                        <p class="mb-4"><strong>Total Pembayaran:</strong> <span class="text-warning fs-5 fw-bold">${formattedAmount}</span></p>
+                        <hr class="my-3">
+                        <p class="small mb-3"><strong>Pilih Metode Pembayaran:</strong></p>
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-outline-primary text-start" onclick="processInvoicePayment(${id}, 'GoPay')">
+                                <i class="bi bi-wallet2 me-2"></i>GoPay
+                            </button>
+                            <button class="btn btn-outline-success text-start" onclick="processInvoicePayment(${id}, 'OVO')">
+                                <i class="bi bi-wallet2 me-2"></i>OVO
+                            </button>
+                            <button class="btn btn-outline-info text-start" onclick="processInvoicePayment(${id}, 'DANA')">
+                                <i class="bi bi-wallet2 me-2"></i>DANA
+                            </button>
+                            <button class="btn btn-outline-secondary text-start" onclick="processInvoicePayment(${id}, 'Transfer Bank')">
+                                <i class="bi bi-bank me-2"></i>Transfer Bank
+                            </button>
+                        </div>
+                    </div>
+                `,
+                showConfirmButton: false,
+                showCancelButton: true,
+                cancelButtonText: 'Batal',
+                width: '550px'
+            });
+        }
+
+        function processInvoicePayment(id, method) {
+            Swal.close();
+
+            Swal.fire({
+                title: 'Memproses Pembayaran...',
+                html: `Metode: <strong>${method}</strong><br>Mohon tunggu sebentar...`,
+                icon: 'info',
+                allowOutsideClick: false,
+                showConfirmButton: false,
+                didOpen: () => {
+                    Swal.showLoading();
+
+                    // Simulate payment processing
+                    setTimeout(() => {
+                        const form = document.createElement('form');
+                        form.method = 'POST';
+                        form.innerHTML = `
+                            <input type="hidden" name="pay_invoice" value="1">
+                            <input type="hidden" name="invoice_id" value="${id}">
+                            <input type="hidden" name="payment_method" value="${method}">
+                        `;
+                        document.body.appendChild(form);
+                        form.submit();
+                    }, 1500);
                 }
             });
         }

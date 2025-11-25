@@ -40,6 +40,28 @@ $overdueBorrowings = $db->fetchAll(
     [$currentUser['id']]
 );
 
+// Get payment history for user
+$paymentHistory = $db->fetchAll("
+    SELECT f.*, b.title, b.author, bo.borrow_date, bo.return_date
+    FROM fines f
+    JOIN borrowings bo ON f.borrowing_id = bo.id
+    JOIN books b ON bo.book_id = b.id
+    WHERE f.user_id = ? AND f.status = 'paid'
+    ORDER BY f.paid_at DESC
+    LIMIT 5
+", [$currentUser['id']]);
+
+// Get payment statistics
+$paymentStats = $db->fetchOne("
+    SELECT
+        COUNT(CASE WHEN status = 'paid' THEN 1 END) as total_paid_count,
+        COALESCE(SUM(CASE WHEN status = 'paid' THEN amount ELSE 0 END), 0) as total_paid_amount,
+        COUNT(CASE WHEN status = 'unpaid' THEN 1 END) as unpaid_count,
+        COALESCE(SUM(CASE WHEN status = 'unpaid' THEN amount ELSE 0 END), 0) as unpaid_amount
+    FROM fines
+    WHERE user_id = ?
+", [$currentUser['id']]);
+
 // Get recent books
 $recentBooks = $db->fetchAll("SELECT * FROM books WHERE status = 'available' ORDER BY created_at DESC LIMIT 6");
 
@@ -110,6 +132,7 @@ $pageTitle = 'Dashboard - ' . SITE_NAME;
         .gradient-green { background: linear-gradient(135deg, #10B981, #059669); }
         .gradient-purple { background: linear-gradient(135deg, #8B5CF6, #6D28D9); }
         .gradient-orange { background: linear-gradient(135deg, #F59E0B, #D97706); }
+        .gradient-red { background: linear-gradient(135deg, #EF4444, #DC2626); }
 
         .action-card {
             background: white;
@@ -273,17 +296,23 @@ $pageTitle = 'Dashboard - ' . SITE_NAME;
                 </div>
 
                 <div class="col-md-3">
-                    <div class="stats-card-modern">
-                        <div class="d-flex align-items-center">
-                            <div class="stats-icon-modern gradient-purple text-white">
-                                <i class="bi bi-person-badge-fill"></i>
-                            </div>
-                            <div class="ms-3 flex-grow-1">
-                                <h3 class="fw-bold mb-0 text-uppercase"><?php echo htmlspecialchars($currentUser['role']); ?></h3>
-                                <p class="text-muted mb-0">Status Anda</p>
+                    <a href="<?php echo SITE_URL; ?>/user/fines.php" class="text-decoration-none">
+                        <div class="stats-card-modern" style="<?php echo ($paymentStats['unpaid_amount'] ?? 0) > 0 ? 'border-color: #EF4444;' : ''; ?>">
+                            <div class="d-flex align-items-center">
+                                <div class="stats-icon-modern <?php echo ($paymentStats['unpaid_amount'] ?? 0) > 0 ? 'gradient-red' : 'gradient-purple'; ?> text-white">
+                                    <i class="bi bi-<?php echo ($paymentStats['unpaid_amount'] ?? 0) > 0 ? 'exclamation-triangle-fill' : 'check-circle-fill'; ?>"></i>
+                                </div>
+                                <div class="ms-3 flex-grow-1">
+                                    <h3 class="fw-bold mb-0 <?php echo ($paymentStats['unpaid_amount'] ?? 0) > 0 ? 'text-danger' : 'text-success'; ?>">
+                                        <?php echo formatCurrency($paymentStats['unpaid_amount'] ?? 0); ?>
+                                    </h3>
+                                    <p class="text-muted mb-0">
+                                        <?php echo ($paymentStats['unpaid_amount'] ?? 0) > 0 ? 'Denda Belum Dibayar' : 'Tidak Ada Denda'; ?>
+                                    </p>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
             </div>
 
@@ -405,6 +434,95 @@ $pageTitle = 'Dashboard - ' . SITE_NAME;
                         <div class="card-footer">
                             <a href="<?php echo SITE_URL; ?>/user/borrowing.php" class="btn btn-sm btn-primary">
                                 Lihat Semua Peminjaman
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <?php endif; ?>
+
+            <!-- Payment History -->
+            <?php if (!empty($paymentHistory)): ?>
+            <div class="row g-4 mb-4">
+                <div class="col-12">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h5 class="fw-bold mb-0"><i class="bi bi-receipt me-2 text-success"></i>Riwayat Pembayaran Denda</h5>
+                        <a href="<?php echo SITE_URL; ?>/user/fines.php" class="btn btn-sm btn-outline-success">Lihat Semua</a>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="info-card-modern">
+                        <div class="card-body">
+                            <!-- Payment Stats -->
+                            <div class="row g-3 mb-4">
+                                <div class="col-md-6">
+                                    <div class="d-flex align-items-center p-3" style="background: #F0FDF4; border-radius: 10px; border: 1px solid #86EFAC;">
+                                        <div class="me-3">
+                                            <i class="bi bi-check-circle-fill text-success" style="font-size: 2rem;"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="mb-0 fw-bold text-success"><?php echo formatCurrency($paymentStats['total_paid_amount'] ?? 0); ?></h4>
+                                            <small class="text-muted">Total Denda Dibayar (<?php echo $paymentStats['total_paid_count'] ?? 0; ?> transaksi)</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="d-flex align-items-center p-3" style="background: <?php echo ($paymentStats['unpaid_amount'] ?? 0) > 0 ? '#FEF2F2' : '#F9FAFB'; ?>; border-radius: 10px; border: 1px solid <?php echo ($paymentStats['unpaid_amount'] ?? 0) > 0 ? '#FECACA' : '#E5E7EB'; ?>;">
+                                        <div class="me-3">
+                                            <i class="bi bi-exclamation-circle-fill <?php echo ($paymentStats['unpaid_amount'] ?? 0) > 0 ? 'text-danger' : 'text-muted'; ?>" style="font-size: 2rem;"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="mb-0 fw-bold <?php echo ($paymentStats['unpaid_amount'] ?? 0) > 0 ? 'text-danger' : 'text-muted'; ?>"><?php echo formatCurrency($paymentStats['unpaid_amount'] ?? 0); ?></h4>
+                                            <small class="text-muted">Denda Belum Dibayar (<?php echo $paymentStats['unpaid_count'] ?? 0; ?> denda)</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Payment History Table -->
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Buku</th>
+                                            <th>Tgl Dikembalikan</th>
+                                            <th>Terlambat</th>
+                                            <th>Jumlah Denda</th>
+                                            <th>Dibayar Pada</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php foreach ($paymentHistory as $payment): ?>
+                                            <tr>
+                                                <td>
+                                                    <div class="fw-bold"><?php echo htmlspecialchars($payment['title']); ?></div>
+                                                    <small class="text-muted"><?php echo htmlspecialchars($payment['author']); ?></small>
+                                                </td>
+                                                <td><?php echo date('d/m/Y', strtotime($payment['return_date'])); ?></td>
+                                                <td>
+                                                    <span class="badge bg-warning text-dark">
+                                                        <?php echo $payment['days_late']; ?> hari
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    <strong class="text-danger"><?php echo formatCurrency($payment['amount']); ?></strong>
+                                                </td>
+                                                <td><?php echo date('d/m/Y', strtotime($payment['paid_at'])); ?></td>
+                                                <td>
+                                                    <span class="badge bg-success">
+                                                        <i class="bi bi-check-circle-fill me-1"></i>Lunas
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a href="<?php echo SITE_URL; ?>/user/fines.php" class="btn btn-sm btn-success">
+                                <i class="bi bi-receipt me-2"></i>Lihat Semua Riwayat Denda
                             </a>
                         </div>
                     </div>

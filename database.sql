@@ -106,6 +106,29 @@ CREATE TABLE book_requests (
     INDEX idx_priority (priority)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- Table: Book Request Payments (Tagihan pembayaran untuk buku yang direquest)
+CREATE TABLE book_request_payments (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    book_request_id INT NOT NULL,
+    user_id INT NOT NULL,
+    invoice_number VARCHAR(50) UNIQUE NOT NULL,
+    amount DECIMAL(10,2) NOT NULL,
+    payment_status ENUM('unpaid', 'paid', 'cancelled') DEFAULT 'unpaid',
+    payment_method VARCHAR(50) NULL,
+    payment_date TIMESTAMP NULL,
+    due_date DATE NULL,
+    admin_notes TEXT,
+    created_by INT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (book_request_id) REFERENCES book_requests(id) ON DELETE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (created_by) REFERENCES users(id) ON DELETE SET NULL,
+    INDEX idx_payment_status (payment_status),
+    INDEX idx_user (user_id),
+    INDEX idx_request (book_request_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 -- Table: Borrowing Transactions
 CREATE TABLE borrowings (
     id INT PRIMARY KEY AUTO_INCREMENT,

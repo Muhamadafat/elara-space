@@ -15,6 +15,19 @@ if (isset($_POST['action']) && isset($_POST['request_id'])) {
 
     if ($request) {
         if ($action === 'approve') {
+            // Check payment status first
+            $payment = $db->fetchOne(
+                "SELECT payment_status FROM book_request_payments WHERE book_request_id = ?",
+                [$requestId]
+            );
+
+            if (!$payment || $payment['payment_status'] !== 'paid') {
+                setFlashMessage('error', 'User belum melakukan pembayaran! Tunggu sampai user membayar invoice terlebih dahulu.');
+                redirect(SITE_URL . '/admin/requests/index.php');
+                exit;
+            }
+
+            // Update request status
             $db->execute(
                 "UPDATE book_requests SET status = 'approved', approved_by = ?, approved_at = NOW(), admin_notes = ? WHERE id = ?",
                 [$currentUser['id'], $adminNotes, $requestId]
@@ -24,12 +37,12 @@ if (isset($_POST['action']) && isset($_POST['request_id'])) {
             createNotification(
                 $request['user_id'],
                 'Permintaan Buku Disetujui',
-                'Permintaan Anda untuk "' . $request['title'] . '" telah disetujui!',
+                'Permintaan Anda untuk "' . $request['title'] . '" telah disetujui! Buku akan segera dipesan dari penerbit.',
                 'success'
             );
 
             logActivity($currentUser['id'], 'approve_request', 'requests', 'Approved request ID: ' . $requestId);
-            setFlashMessage('success', 'Permintaan berhasil disetujui');
+            setFlashMessage('success', 'Permintaan berhasil disetujui. Buku dapat dipesan dari penerbit.');
         } elseif ($action === 'reject') {
             $db->execute(
                 "UPDATE book_requests SET status = 'rejected', approved_by = ?, approved_at = NOW(), admin_notes = ? WHERE id = ?",
@@ -126,14 +139,16 @@ $totalRequests = $db->fetchOne("SELECT COUNT(*) as count FROM book_requests br
                                  $whereClause", $params)['count'];
 $pagination = paginate($totalRequests, $page);
 
-// Get requests with priority sorting
+// Get requests with priority sorting + payment status
 $query = "SELECT br.*, u.name as user_name, u.user_code, u.email, u.role,
           uni.name as university_name, uni.code as university_code,
-          approver.name as approver_name
+          approver.name as approver_name,
+          brp.payment_status, brp.payment_date, brp.payment_method, brp.invoice_number, brp.amount as payment_amount
           FROM book_requests br
           JOIN users u ON br.user_id = u.id
           JOIN universities uni ON br.university_id = uni.id
           LEFT JOIN users approver ON br.approved_by = approver.id
+          LEFT JOIN book_request_payments brp ON br.id = brp.book_request_id
           $whereClause
           ORDER BY
             CASE br.status
@@ -260,6 +275,7 @@ $pageTitle = 'Permintaan Buku - ' . SITE_NAME;
                                         <th>Prioritas</th>
                                         <th>Est. Harga</th>
                                         <th>Tgl Request</th>
+                                        <th>Pembayaran</th>
                                         <th>Status</th>
                                         <th width="150">Aksi</th>
                                     </tr>
@@ -300,6 +316,21 @@ $pageTitle = 'Permintaan Buku - ' . SITE_NAME;
                                             </td>
                                             <td><?php echo $req['estimated_price'] ? formatCurrency($req['estimated_price']) : '-'; ?></td>
                                             <td><?php echo formatDate($req['created_at']); ?></td>
+                                            <td>
+                                                <?php if ($req['payment_status'] === 'paid'): ?>
+                                                    <span class="badge bg-success" title="Dibayar: <?php echo formatDate($req['payment_date']); ?>">
+                                                        <i class="bi bi-check-circle-fill me-1"></i>Lunas
+                                                    </span>
+                                                    <br><small class="text-muted"><?php echo $req['payment_method']; ?></small>
+                                                <?php elseif ($req['payment_status'] === 'unpaid'): ?>
+                                                    <span class="badge bg-warning text-dark" title="Invoice: <?php echo $req['invoice_number']; ?>">
+                                                        <i class="bi bi-clock-fill me-1"></i>Belum Bayar
+                                                    </span>
+                                                    <br><small class="text-muted"><?php echo formatCurrency($req['payment_amount']); ?></small>
+                                                <?php else: ?>
+                                                    <span class="badge bg-secondary">-</span>
+                                                <?php endif; ?>
+                                            </td>
                                             <td><?php echo getStatusBadge($req['status']); ?></td>
                                             <td class="table-actions">
                                                 <a href="view.php?id=<?php echo $req['id']; ?>" class="btn btn-sm btn-info" title="Lihat Detail">

@@ -72,6 +72,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 if ($db->execute($query, $params)) {
                     $requestId = $db->lastInsertId();
 
+                    // Create payment invoice immediately
+                    try {
+                        $invoiceNumber = 'INV-BR-' . date('Ymd') . '-' . str_pad($requestId, 5, '0', STR_PAD_LEFT);
+                        $dueDate = date('Y-m-d', strtotime('+7 days')); // Due in 7 days
+                        $amount = $formData['estimated_price'] ?: 0;
+
+                        $db->execute(
+                            "INSERT INTO book_request_payments (book_request_id, user_id, invoice_number, amount, due_date, admin_notes, payment_status)
+                             VALUES (?, ?, ?, ?, ?, ?, 'unpaid')",
+                            [
+                                $requestId,
+                                $currentUser['id'],
+                                $invoiceNumber,
+                                $amount,
+                                $dueDate,
+                                'Pembayaran untuk permintaan buku: ' . $formData['title']
+                            ]
+                        );
+                    } catch (Exception $e) {
+                        // Log error but don't fail the request
+                        error_log("Failed to create invoice for request {$requestId}: " . $e->getMessage());
+                    }
+
                     // Create notification for admins
                     try {
                         $admins = $db->fetchAll("SELECT id FROM users WHERE role IN ('admin', 'super_admin')");
@@ -94,7 +117,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         // Ignore
                     }
 
-                    redirect(SITE_URL . '/user/requests.php', 'Permintaan buku Anda berhasil dikirim!', 'success');
+                    redirect(SITE_URL . '/user/requests.php', 'Permintaan berhasil dikirim! Silakan lakukan pembayaran untuk melanjutkan.', 'success');
                 } else {
                     $error = 'Gagal mengirim permintaan. Silakan coba lagi.';
                 }
