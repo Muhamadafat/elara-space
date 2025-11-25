@@ -126,7 +126,10 @@ CREATE TABLE book_request_payments (
     FOREIGN KEY (created_by) REFERENCES users(id) ON DELETE SET NULL,
     INDEX idx_payment_status (payment_status),
     INDEX idx_user (user_id),
-    INDEX idx_request (book_request_id)
+    INDEX idx_request (book_request_id),
+    INDEX idx_due_date (due_date),
+    INDEX idx_user_status (user_id, payment_status),
+    INDEX idx_created_at (created_at)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Table: Borrowing Transactions
@@ -390,3 +393,41 @@ INSERT INTO marketplace_books (publisher_id, isbn, title, author, category, pric
 (1, '978-1-101-98013-4', 'Blockchain Revolution', 'Don Tapscott', 'Technology', 480000, 'Periplus', 12, '4-6 hari kerja', 10, 'available'),
 (2, '978-0-134-68581-5', 'Python for Data Analysis', 'Wes McKinney', 'Data Science', 750000, 'Gramedia', 10, '3-5 hari kerja', 12, 'available'),
 (3, '978-0-262-03384-8', 'Artificial Intelligence Modern', 'Stuart Russell', 'AI', 920000, 'Togamas', 12, '2-4 hari kerja', 6, 'available');
+
+-- ============================================================================
+-- MIGRATION SCRIPT: Update Existing Database
+-- ============================================================================
+-- Run this section ONLY if you already have a database and want to add
+-- the payment system feature to existing installation.
+-- ============================================================================
+
+-- Step 1: Add indexes to book_request_payments table (if not exists)
+-- This improves query performance for payment lookups
+ALTER TABLE book_request_payments
+ADD INDEX IF NOT EXISTS idx_due_date (due_date),
+ADD INDEX IF NOT EXISTS idx_user_status (user_id, payment_status),
+ADD INDEX IF NOT EXISTS idx_created_at (created_at);
+
+-- Step 2: Create invoices for existing approved requests (one-time migration)
+-- This generates payment invoices for book requests that were approved
+-- before the payment system was implemented
+INSERT INTO book_request_payments (book_request_id, user_id, invoice_number, amount, due_date, admin_notes, created_by, payment_status)
+SELECT
+    br.id,
+    br.user_id,
+    CONCAT('INV-BR-', DATE_FORMAT(NOW(), '%Y%m%d'), '-', LPAD(br.id, 5, '0')),
+    COALESCE(br.estimated_price, 0),
+    DATE_ADD(CURDATE(), INTERVAL 7 DAY),
+    CONCAT('Pembayaran untuk buku: ', br.title),
+    br.approved_by,
+    'unpaid'
+FROM book_requests br
+WHERE br.status IN ('pending', 'approved', 'ordered')
+AND NOT EXISTS (
+    SELECT 1 FROM book_request_payments brp WHERE brp.book_request_id = br.id
+)
+AND br.estimated_price IS NOT NULL
+AND br.estimated_price > 0;
+
+-- Note: This script is safe to run multiple times.
+-- It will only create invoices for requests that don't have invoices yet.
